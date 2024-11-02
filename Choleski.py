@@ -1,6 +1,6 @@
 import numpy as np
 
-def cholesky_decomposition(A):
+def Cholesky(A):
     n = A.shape[0]
     L = np.zeros_like(A)  # Inicializa L como matriz compuesta por ceros
 
@@ -13,10 +13,10 @@ def cholesky_decomposition(A):
                 L[i][j] = (A[i][j] - sum_k) / L[j][j]  # Elementos que no pertenecen a la diagonal
     return L
 
-def regression_cholesky(X, y):
+def regresion_cholesky(X, y):
     XtX = X.T @ X  # Matriz de correlación de X
     Xty = X.T @ y  # Producto de X transpuesta y y
-    L = cholesky_decomposition(XtX)  # Descomposición de Cholesky de XtX
+    L = Cholesky(XtX)  # Descomposición de Cholesky de XtX
     z = np.linalg.solve(L, Xty)  # Resuelve Lz = Xty
     beta = np.linalg.solve(L.T, z)  # Resuelve L.T * beta = z
     return beta
